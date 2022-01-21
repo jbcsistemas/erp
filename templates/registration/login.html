@@ -1,0 +1,17 @@
+{% extends "base_login.html" %}
+
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+
+{% if forms.errors %}
+<p>Seu nome de usuário ou senha estão incorretos. Por favor, tente novamente.</p>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+{{ form.as_p }}
+    <input for="id_username" type="text" placeholder="Usuário">
+    <input type="submit" value="Entrar" class="btn btn-primary">
+
+{% endblock %}
