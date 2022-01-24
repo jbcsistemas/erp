@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Ponto de Vendas{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex">
+        <div class="form-floating d-flex">
+            <input type="text" class="form-control me-2" id="floatingInput" placeholder="Código de barras" autofocus>
+            <label for="floatingInput">Código de barras</label>
+        </div>
+        <div class="form-floating d-flex">
+            <input type="number" class="form-control me-2" value="1" id="floatingQtInput" placeholder="Quantidade">
+            <label for="floatingInput">Quantidade</label>
+            <button class="btn btn-success" type="submit"><h3>+</h3></button>
+        </div>
+    </form>    
+  </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 p-2" id="pdv-produtos">
+            <table class="table table-warning table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Cód</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Prç R$</th>
+                    <th scope="col">Qtd</th>
+                    <th scope="col">Total</th>                   
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Arroz T Migo</td>
+                    <td>4,13</td>
+                    <td>2</td>
+                    <td>8,26</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Macarrao Periq</td>
+                    <td>2,70</td>
+                    <td>1</td>
+                    <td>2,70</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Leite Pó</td>
+                    <td>3,50</td>
+                    <td>3</td>
+                    <td>10,50</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Feijao T Zaza</td>
+                    <td>6,42</td>
+                    <td>1</td>
+                    <td>6,42</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4" id="pdv-info">
+            Informações
+        </div>
+    </div>
+
+    <div class="d-flex flex-row align-items-end p-4">
+        <div class="col d-flex justify-content-md-end justify-content-center">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-danger"><h3>Cancelar</h3></button>
+                <button type="button" class="btn btn-success"><h3>Pagamento</h3></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

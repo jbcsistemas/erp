@@ -4,14 +4,40 @@
 
 {% block content %}
 
-{% if forms.errors %}
-<p>Seu nome de usuário ou senha estão incorretos. Por favor, tente novamente.</p>
+{% if form.errors %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>Dados incorretos!</strong> Seu nome de usuário ou senha estão incorretos. Por favor, tente novamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-{{ form.as_p }}
-    <input for="id_username" type="text" placeholder="Usuário">
-    <input type="submit" value="Entrar" class="btn btn-primary">
-
+<div class="container">
+    <div class="row align-items-center justify-content-center" style="min-height: 80vh;">
+        <div class="col-md-5">
+            <div class="text-center">
+                <h1 class="display-5 text-center">Bem-vindo(a)</h1>
+                <p class="lead">
+                    Entre com seu usário e senha para ter acesso ao sistema.
+                </p>
+            </div>
+            <div class="form-login" id="login-form" style="border: 1px solid lightgrey; border-radius: 8px;">
+                <form action="{% url 'login' %}" class="form-floating px-4 py-3" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="nomedeusuario">
+                        <label for="floatingInput">Nome de usuário</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha">
+                        <label for="floatingPassword">Senha</label>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <input type="submit" class="btn btn-primary btn-lg" value="Entrar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
