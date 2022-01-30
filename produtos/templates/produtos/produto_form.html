@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro de Produto{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-light" style="background-color: #EFDEBC">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1">Cadastro de Produto</span>
+  </div>
+</nav>
+
+<div class="container p-2">
+    <form method="post">{% csrf_token %}
+      <div class="row g-3">
+        <div class="container">
+            <div class="form-check form-switch">
+                {{ form.disponivel }}
+                <label class="form-check-label" for="flexSwitchCheckDisponivel">Disponível</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3 col-md-6">    
+            {{ form.codigo_barras }}
+            <label for="floatingCodBarras">Código de Barras</label>
+        </div>
+        <div class="form-floating mb-3 col-md-6">    
+            {{ form.nome }}
+            <label for="floatingNome">Nome</label>
+        </div>
+        <div class="form-floating mb-3 col-md-6">    
+            {{ form.descricao }}
+            <label for="floatingDesc">Descrição</label>
+        </div>
+        <div class="form-floating mb-3 col-6 col-md-3">
+            {{ form.custo }}
+            <label for="floatingCusto">Custo R$</label>
+        </div>
+        <div class="form-floating mb-3 col-6 col-md-3">
+            {{ form.preco }}
+            <label for="floatingPreco">Preço R$</label>
+        </div>
+        <div class="form-floating mb-3 col-md-6">
+            {{ form.marca }}
+            <label for="floatingMarca">Marca</label>
+        </div>
+        <div class="form-floating mb-3 col-md-6">
+            {{ form.categoria }}
+            <label for="floatingCate">Categoria</label>
+        </div>
+      </div>
+    </form>
+</div>
+
+{% endblock %}
