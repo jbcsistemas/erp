@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -59,4 +60,10 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.nome.upper()
+
+    def get_absolute_url(self):
+        return reverse('produtos:detalhes-produto',
+                       args=[self.pk]
+        )
+    
 
