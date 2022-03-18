@@ -2,9 +2,9 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
-from produtos.models import Produto
+from produtos.models import Fornecedor, Produto
 
-from .forms import ProdutoForm
+from .forms import FornecedorForm, ProdutoForm
 
 class ProdutoCreate(CreateView):
     template_name = 'produtos/produto_form.html'
@@ -28,3 +28,27 @@ class ProdutoUpdate(UpdateView):
 class ProdutoDelete(DeleteView):
     model = Produto
     success_url = '/produtos/'
+
+
+class FornecedorCreate(CreateView):
+    template_name = 'produtos/fornecedor_form.html'
+    model = Fornecedor
+    form_class = FornecedorForm
+    success_url = reverse_lazy('produtos:lista-fornecedor')
+
+
+class FornecedorList(ListView):
+    model = Fornecedor
+    paginate_by = 50
+
+
+class FornecedorUpdate(UpdateView):
+    model = Fornecedor
+    template_name = 'produtos/fornecedor_update_form.html'
+    form_class = FornecedorForm
+    success_url = reverse_lazy('produtos:lista-fornecedor')
+
+
+class FornecedorDelete(DeleteView):
+    model = Fornecedor
+    success_url = '/produtos/fornecedores/'

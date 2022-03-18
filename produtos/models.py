@@ -1,7 +1,93 @@
 from django.db import models
 from django.urls import reverse
 
-# Create your models here.
+class Fornecedor(models.Model):
+    UF_CHOICES = (
+        ('ac', 'AC'),
+        ('al', 'AL'),
+        ('ap', 'AP'),
+        ('am', 'AM'),
+        ('ba', 'BA'),
+        ('ce', 'CE'),
+        ('df', 'DF'),
+        ('es', 'ES'),
+        ('go', 'GO'),
+        ('ma', 'MA'),
+        ('mg', 'MG'),
+        ('ms', 'MS'),
+        ('mt', 'MT'),
+        ('pa', 'PA'),
+        ('pb', 'PB'),
+        ('pe', 'PE'),
+        ('pi', 'PI'),
+        ('pr', 'PR'),
+        ('rj', 'RJ'),
+        ('rn', 'RN'),
+        ('rs', 'RS'),
+        ('ro', 'RO'),
+        ('rr', 'RR'),
+        ('sc', 'SC'),
+        ('se', 'SE'),
+        ('sp', 'SP'),
+        ('to', 'TO'),
+    )
+    cnpj = models.CharField(max_length=14)
+    nome = models.CharField(
+        'Nome Empresarial',
+        max_length=50
+        )
+    nome_fantasia = models.CharField(
+        'Nome Fantasia',
+        max_length=50,
+        blank=True
+        )
+    logradouro = models.CharField(
+        max_length=30,
+        blank=True,
+        )
+    numero = models.CharField(
+        'Número',
+        max_length=7,
+        blank=True,
+    )
+    complemento = models.CharField(
+        max_length=30,
+        blank=True,
+    )
+    cep = models.CharField(
+        max_length=9,
+        blank=True,
+    )
+    bairro = models.CharField(
+        'Bairro/Distrito',
+        max_length=25,
+        blank=True,
+    )
+    cidade = models.CharField(
+        max_length=30,
+        blank=True,
+    )
+    uf = models.CharField(
+        max_length=2,
+        choices=UF_CHOICES,
+        blank=True,
+    )
+    email = models.CharField(
+        max_length=50,
+        blank=True,
+    )
+    telefone = models.CharField(
+        max_length=12,
+        blank=True,
+    )
+    slug = models.SlugField(max_length=250)
+
+    def get_absolute_url(self):
+        return reverse('produtos:detalhes-fornecedor',
+           args=[self.pk]
+        )
+
+
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=20)
@@ -65,5 +151,4 @@ class Produto(models.Model):
         return reverse('produtos:detalhes-produto',
                        args=[self.pk]
         )
-    
 

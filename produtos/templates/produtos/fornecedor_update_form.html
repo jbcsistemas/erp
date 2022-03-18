@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Fornecedor{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/produtos/fornecedores">Fornecedores</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+              </ol>
+            </nav>
+        </div>
+    </nav>
+    <div class="container p-2">
+        <form method="post">{% csrf_token %}
+            <div class="row g-3">
+              <div class="form-floating mb-3 col-md-6">    
+                  {{ form.cnpj }}
+                  <label for="floatingCNPJ">CNPJ</label>
+              </div>
+              <div class="form-floating mb-3 col-md-6">    
+                  {{ form.nome }}
+                  <label for="floatingNome">Nome Empresarial</label>
+              </div>
+              <div class="form-floating mb-3 col-md-6">    
+                  {{ form.nome_fantasia }}
+                  <label for="floatingFantasia">Nome Fantasia</label>
+              </div>
+              <div class="form-floating mb-3 col-md-6">
+                  {{ form.telefone }}
+                  <label for="floatingTelefone">Telefone</label>
+              </div>
+              <div class="form-floating mb-3 col-md-6">
+                  {{ form.email }}
+                  <label for="floatingEmail">E-mail</label>
+              </div>
+              <div class="form-floating mb-3 col-6 col-md-3">
+                  {{ form.logradouro }}
+                  <label for="floatingLogradouro">Logradouro</label>
+              </div>
+              <div class="form-floating mb-3 col-6 col-md-3">
+                  {{ form.complemento }}
+                  <label for="floatingComplemento">Complemento</label>
+              </div>
+              <div class="form-floating mb-3 col-md-3">
+                  {{ form.bairro }}
+                  <label for="floatingBairro">Bairro</label>
+              </div>
+              <div class="form-floating mb-3 col-md-3">
+                  {{ form.cidade }}
+                  <label for="floatingCidade">Cidade</label>
+              </div>
+              <div class="form-floating col-md-2">
+                  {{ form.uf }}
+                  <label for="selectUF">UF</label>
+              </div>
+              <div class="form-floating mb-3 col-md-4">
+                  {{ form.cep }}
+                  <label for="floatingCEP">CEP</label>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="btn-group btn-group-lg col-md-6" role="group" aria-label="Basic example">
+                  <a class="btn btn-danger" href="/produtos/fornecedores/{{ object.id }}/delete">Excluir</a>
+                  <a class="btn btn-secondary" href="/produtos/fornecedores/">Cancelar</a>
+                  <input type="submit" class="btn btn-success" value="Atualizar">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

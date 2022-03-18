@@ -1,5 +1,90 @@
 from django import forms
-from produtos.models import Produto
+from produtos.models import Fornecedor, Produto
+
+class FornecedorForm(forms.ModelForm):
+    class Meta:
+        model = Fornecedor
+        exclude = ('slug',)
+        widgets = {
+            'cnpj': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'floatingCNPJ',
+                    'placeholder': 'CNPJ',
+                }
+            ),
+            'nome': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'floatingNome',
+                    'placeholder': 'Nome Empresarial',
+                }
+            ),
+            'nome_fantasia': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'floatingFantasia',
+                    'placeholder': 'Nome Fantasia',
+                }
+            ),
+            'logradouro': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'floatingLogradouro',
+                    'placeholder': 'Logradouro',
+                }
+            ),
+            'complemento': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'floatingComplemento',
+                    'placeholder': 'Complemento',
+                }
+            ),
+            'cep': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'floatingCEP',
+                    'placeholder': 'CEP',
+                }
+            ),
+            'bairro': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'FloatingBairro',
+                    'placeholder': 'Bairro',
+                }
+            ),
+            'cidade': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'FloatingCidade',
+                    'placeholder': 'Cidade',
+                }
+            ),
+            'uf': forms.Select(
+                attrs={
+                    'class': 'form-select form-select-lg pb-3',
+                    'aria-label': '.form-select-lg example',
+                    'id': 'selectUF',
+                }
+            ),
+            'email': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'FloatingEmail',
+                    'placeholder': 'E-mail',
+                }
+            ),
+            'telefone': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'FloatingFone',
+                    'placeholder': 'Telefone'
+                }
+            )
+        }
+
 
 class ProdutoForm(forms.ModelForm):
 
