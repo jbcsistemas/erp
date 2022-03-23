@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'caixa',
     'produtos',
+    'pessoas',
 ]
 
 MIDDLEWARE = [

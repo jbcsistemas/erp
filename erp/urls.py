@@ -25,5 +25,6 @@ urlpatterns = [
          name='logout'),
     path('', include('core.urls', namespace='core')),
     path('caixa/', include('caixa.urls', namespace='caixa')),
-    path('produtos/', include('produtos.urls', namespace='produtos'))
+    path('produtos/', include('produtos.urls', namespace='produtos')),
+    path('pessoas/', include('pessoas.urls', namespace='pessoas')),
 ]

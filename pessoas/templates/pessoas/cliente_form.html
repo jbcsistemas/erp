@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro de Cliente{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/pessoas/clientes/">Clientes</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+              </ol>
+            </nav>
+        </div>
+    </nav>
+
+    <form method="post">{% csrf_token %}
+
+        <div class="accordion" id="accordionInformaçõesPessoais">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  Informações Pessoais
+                </button>
+              </h2>
+              <div id="panelsInformaçõesPessoais" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col-md-6">
+                            {{ form.nome }}
+                            <label for="floatingNome">Nome <strong class="inputImportante">*</strong></label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6">
+                            {{ form.sobrenome }}
+                            <label for="floatingSobrenome">Sobrenome <strong class="inputImportante">*</strong></label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.apelido }}
+                            <label for="floatingApelido">Apelido</label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.cpf }}
+                            <label for="floatingCPF">CPF <strong class="inputImportante">*</strong></label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.rg }}
+                            <label for="floatingRG">RG</label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.nascimento }}
+                            <label for="floatingNasc">Nascimento DD/MM/AAAA</label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.naturalidade }}
+                            <label for="floatingNatur">Naturalidade</label>
+                        </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsEndereço">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                  Endereço
+                </button>
+              </h2>
+              <div id="panelsEndereço" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.logradouro }}
+                            <label for="floatingLogradouro">Rua <strong class="inputImportante">*</strong></label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-3">
+                            {{ form.numero }}
+                            <label for="floatingNumero">Número <strong class="inputImportante">*</strong></label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-5">
+                            {{ form.complemento }}
+                            <label for="floatingComplemento">Complemento</label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-2">
+                            {{ form.cep }}
+                            <label for="floatingCEP">CEP</label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.bairro }}
+                            <label for="floatingBairro">Bairro <strong class="inputImportante">*</strong></label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.cidade }}
+                            <label for="floatingCidade">Cidade <strong class="inputImportante">*</strong></label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-2">
+                            {{ form.uf }}
+                            <label for="selectUF">UF <strong class="inputImportante">*</strong></label>
+                        </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsContato">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                  Contato
+                </button>
+              </h2>
+              <div id="contato" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                    
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col-md-6">
+                            {{ form.email }}
+                            <label for="floatingEmail">E-mail</label>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6">
+                            {{ form.telefone }}
+                            <label for="floatingFone">Telefone/Celular <strong class="inputImportante">*</strong></label>
+                        </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsFinanceiro">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    Limite de Crédito <strong class="inputImportante">*</strong>
+                </button>
+              </h2>
+                <div id="Financeiro" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+
+                        <div class="form-floating mb-3 col-md-4">
+                            {{ form.limite_credito }}
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row justify-content-center">
+                        <div class="btn-group btn-group-lg col-md-6" role="group" aria-label="Basic example">
+                            <a class="btn btn-secondary" href="/produtos/fornecedores">Cancelar</a>
+                            <input type="submit" class="btn btn-success" value="Cadastrar">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        {% if form.cpf.errors or form.rg.errors %}
+            <script>
+                const errors = [];
+                {% for error in form.cpf.errors %}
+                    errors.push("{{ error|upper }}");
+                {% endfor %}
+                {% for error in form.rg.errors %}
+                    errors.push("{{ error|upper }}")
+                {% endfor %}
+                let msg = "";
+                errors.forEach(exibirErros);
+
+                function exibirErros(value) {
+                    msg += value + "\n";
+                }
+                alert(msg);
+            </script>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Cliente{% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <form method="post">{% csrf_token %}
+    
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Excluir <strong>{{ object.nome|upper }} {{ object.sobrenome|upper }}</strong></h4>
+            <p>A exclusão desse <strong>cliente</strong> será permanente e não pode ser desfeita.</p>
+            <hr>
+            <p class="mb-0">Tem certeza que deseja excluir esse cliente <strong>{{ object.nome|upper }} {{ object.sobrenome|upper }}</strong>?</p>
+        </div>
+        <a class="btn btn-secondary" href="/pessoas/clientes/detalhes/{{ object.id }}">Cancelar</a>
+        <input class="btn btn-danger" type="submit" value="Excluir">
+    
+    </form>
+</div>
+
+{% endblock %}
