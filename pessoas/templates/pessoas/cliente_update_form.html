@@ -8,9 +8,9 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container">
             <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/pessoas/clientes/">Clientes</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+              <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item"><a href="{{ url_base }}">{{ page_title }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ cliente.nome }} {{ cliente.sobrenome }}</li>
               </ol>
             </nav>
         </div>
@@ -18,7 +18,7 @@
 
     <form method="post">{% csrf_token %}
 
-        <div class="accordion" id="accordionInformaçõesPessoais">
+        <div class="accordion mt-2" id="accordionInformaçõesPessoais">
             <div class="accordion-item">
               <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -145,8 +145,8 @@
                     <hr>
                     <div class="row justify-content-center">
                         <div class="btn-group btn-group-lg col-md-6" role="group" aria-label="Basic example">
-                        <a class="btn btn-danger" href="/pessoas/clientes/{{ object.id }}/delete"><i class="bi-trash-fill"></i> Excluir</a>
-                            <a class="btn btn-secondary" href="/pessoas/clientes">Cancelar</a>
+                        <a class="btn btn-danger" href="{{ url_base }}/{{ object.id }}/delete"><i class="bi-trash-fill"></i> Excluir</a>
+                            <a class="btn btn-secondary" href="{{ url_base }}">Cancelar</a>
                             <input type="submit" class="btn btn-success" value="Atualizar">
                         </div>
                     </div>

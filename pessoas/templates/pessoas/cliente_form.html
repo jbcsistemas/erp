@@ -1,27 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}Cadastro de Cliente{% endblock %}
+{% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
 
-<div class="container">
-    <nav class="navbar navbar-light bg-light">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/pessoas/clientes/">Clientes</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cadastro</li>
-              </ol>
-            </nav>
-        </div>
-    </nav>
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item"><a href="{{ url_base }}">Clientes</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
 
+<div class="container mt-1">
     <form method="post">{% csrf_token %}
 
         <div class="accordion" id="accordionInformaçõesPessoais">
             <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+              <h2 class="accordion-header" id="accordionInformaçõesPessoais">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsInformaçõesPessoais" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                   Informações Pessoais
                 </button>
               </h2>
@@ -63,8 +63,8 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsEndereço">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+              <h2 class="accordion-header" id="accordionEndereço">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsEndereço" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
                   Endereço
                 </button>
               </h2>
@@ -106,14 +106,14 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsContato">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              <h2 class="accordion-header" id="accordionContato">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsContato" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                   Contato
                 </button>
               </h2>
-              <div id="contato" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
+              <div id="panelsContato" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
                 <div class="accordion-body">
-                    
+
                     <div class="row g-3">
                         <div class="form-floating mb-3 col-md-6">
                             {{ form.email }}
@@ -129,12 +129,12 @@
               </div>
             </div>
             <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsFinanceiro">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+              <h2 class="accordion-header" id="accordionFinanceiro">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsFinanceiro" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
                     Limite de Crédito <strong class="inputImportante">*</strong>
                 </button>
               </h2>
-                <div id="Financeiro" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
+                <div id="panelsFinanceiro" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
 
                         <div class="form-floating mb-3 col-md-4">
@@ -145,8 +145,8 @@
                     <hr>
                     <div class="row justify-content-center">
                         <div class="btn-group btn-group-lg col-md-6" role="group" aria-label="Basic example">
-                            <a class="btn btn-secondary" href="/produtos/fornecedores">Cancelar</a>
-                            <input type="submit" class="btn btn-success" value="Cadastrar">
+                            <a class="btn btn-secondary" href="{{ url_base }}">Cancelar</a>
+                            <input type="submit" class="btn btn-success" value="Salvar">
                         </div>
                     </div>
                     <hr>

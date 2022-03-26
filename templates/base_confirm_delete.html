@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0435;">
+    <div class="container">
+        <a class="navbar-brand" href="/">JBC Sistemas</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Início</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Suporte</a>
+                </li>
+            </ul>
+            
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="btn-group" role="group">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Guichê ##
+                </button>
+            
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        {{ user.username }}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        {{ user.first_name }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href="/admin/auth/user/{{ user.id }}">Perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Configurações</a></li>
+                    </ul>
+                </div>
+                <a type="button" class="btn btn-danger" href="{% url "logout" %}">Sair</a>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item"><a href="{{ url_base }}">{{ page_title }}</a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="{{ url_base }}/detalhes/{{ cliente.id }}/">{{ cliente.nome }} {{ cliente.sobrenome }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Excluir</li>
+              </ol>
+            </nav>
+        </div>
+    </nav>
+
+<main>
+
+        <form method="post">{% csrf_token %}
+        
+            <div class="alert alert-danger mt-2" role="alert">
+                <h4 class="alert-heading">Excluir <strong>{{ object.nome|upper }} {{ object.sobrenome|upper }}</strong></h4>
+                <p>A exclusão desse <strong>cliente</strong> será permanente e não pode ser desfeita.</p>
+                <hr>
+                <p class="mb-0">Tem certeza que deseja excluir esse cliente <strong>{{ object.nome|upper }} {{ object.sobrenome|upper }}</strong>?</p>
+            </div>
+            <a class="btn btn-secondary" href="{{ url_base }}/detalhes/{{ object.id }}">Cancelar</a>
+            <input class="btn btn-danger" type="submit" value="Excluir">
+        
+        </form>
+    </div>
+
+</main>
+{% block content %}
+
+{% endblock %}
+
+{% block extra_js %}{% endblock extra_js %}
+
+</body>
+</html>
