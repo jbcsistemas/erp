@@ -4,9 +4,9 @@ from pessoas.views import ClienteCreate, ClienteList, ClienteUpdate, ClienteDele
 app_name = 'pessoas'
 urlpatterns = [
     path(
-        'clientes/cadastro/',
+        'clientes/novo/',
         ClienteCreate.as_view(),
-        name='cadastro-cliente',
+        name='novo-cliente',
     ),
     path(
         'clientes/',

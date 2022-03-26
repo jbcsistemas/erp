@@ -11,11 +11,20 @@ class ProdutoCreate(CreateView):
     model = Produto
     form_class = ProdutoForm
     success_url = reverse_lazy('produtos:lista-produto')
+    extra_context = {
+        'previous_page': 'Produtos',
+        'page_title': 'Novo Produto',
+        'url_base': '/produtos',
+    }
 
 
 class ProdutoList(ListView):
     model = Produto
     paginate_by = 50
+    extra_context = {
+        'page_title': 'Produtos',
+        'url_base': '/produtos',
+    }
 
 
 class ProdutoUpdate(UpdateView):
@@ -35,11 +44,20 @@ class FornecedorCreate(CreateView):
     model = Fornecedor
     form_class = FornecedorForm
     success_url = reverse_lazy('produtos:lista-fornecedor')
+    extra_context = {
+        'previous_page': 'Fornecedores',
+        'page_title': 'Novo Fornecedor',
+        'url_base': '/produtos/fornecedores'
+    }
 
 
 class FornecedorList(ListView):
     model = Fornecedor
     paginate_by = 50
+    extra_context = {
+        'page_title': 'Fornecedores',
+        'url_base': '/produtos/fornecedores'
+    }
 
 
 class FornecedorUpdate(UpdateView):

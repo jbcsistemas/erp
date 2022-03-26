@@ -34,6 +34,13 @@ class FornecedorForm(forms.ModelForm):
                     'placeholder': 'Logradouro',
                 }
             ),
+            'numero': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'id': 'floatingNumero',
+                    'placeholder': 'Número',
+                }
+            ),
             'complemento': forms.TextInput(
                 attrs={
                     'class': 'form-control',
