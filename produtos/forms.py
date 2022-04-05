@@ -169,3 +169,21 @@ class ProdutoForm(forms.ModelForm):
                 }
             ),
         }
+
+
+class ItensPorPagina(forms.Form):
+    QUANTIDADE_DE_ITENS = (
+        ('1', '1'),
+        ('10', '10'),
+        ('20', '20'),
+        ('30', '30'),
+    )
+    quantidade = forms.ChoiceField(
+        choices=QUANTIDADE_DE_ITENS,
+        widget = forms.Select(
+            attrs = {
+                'class': 'form-select me-2',
+                'id': 'form-qtd-itens',
+            }
+        )
+    )

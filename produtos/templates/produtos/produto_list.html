@@ -12,7 +12,6 @@
 
 </style>
 
-
 <nav class="navbar navbar-expand-lg navbar-light navbar-page">
     <div class="container">
         <a class="navbar-brand" href="{{ url_base }}">{{ page_title }}</a>
@@ -32,11 +31,22 @@
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Exibir
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for item in paginate %}
+                            <li><a class="dropdown-item" href="{{ paginate_by|add:item }}">{{ item }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
             </ul>
-            <form class="d-flex">
+            <form class="d-flex" method="GET">
                 <div class="input-group me-2">
-                    <input type="text" class="form-control" placeholder="Pesquisar" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    <button class="btn btn-primary" type="button" id="button-addon1"><i class="bi bi-search"></i></button>
+                    <input type="text" class="form-control busca" name="texto" value="{{ request.GET.texto }}" placeholder="Pesquisar" autocomplete="off" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <button class="btn btn-light"><a href="{% url 'produtos:lista-produto' %}"><i class="bi bi-x-lg"></i></a></button>
+                    <button class="btn btn-primary" type="submit" id="button-addon1"><i class="bi bi-search"></i></button>
                 </div>
             </form>
             <a class="btn btn-success mt-2 mt-lg-0" href="{{ url_base }}/novo" role="button">Novo</a>
@@ -44,8 +54,17 @@
     </div>
 </nav>
 
-
 <div class="container table-responsive mt-1">
+    {% if object_list %}
+            <div class="alert alert-primary alert-dismissible fade show mb-1 p-2" role="alert">
+                {% if object_list|length > 1 %}
+                    {{ object_list|length }} {{ page_title|lower }} sendo exibidos 
+                {% else %}Um único resulado sendo exibido 
+                {% endif %}
+                de {{ page_obj.paginator.count }} {{ page_title|lower }} encontrados.
+                <button type="button" class="btn-close pb-2" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    {% endif %}
     <table class="table table-light table-striped table-hover table-sm">
         <thead class="table-light">
             <tr>
@@ -70,13 +89,42 @@
                     <td>{{ produto.disponivel }}</td>
                 </tr>
         {% empty %}
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning alert-dismissible fade show mb-1 p-2" role="alert">
                 Nenhum produto encontrado.
+                <button type="button" class="btn-close pb-2" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}   
         </tbody>
     </table>
 </div>
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                </li>
+                {% if page_obj.number > 2 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">1</a>
+                    </li>
+                    <li class="page-item">
+                        <span class="page-link">...</span>
+                    </li>
+                {% endif %}
+            {% endif %}
+                
+      <li class="page-item active"><a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+                </li>
+            {% endif %}
+    </ul>
+</nav>
 
 <script>
 

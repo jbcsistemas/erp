@@ -20,12 +20,21 @@ class ProdutoCreate(CreateView):
 
 class ProdutoList(ListView):
     model = Produto
-    paginate_by = 50
+    paginate_by = 2
     extra_context = {
         'page_title': 'Produtos',
         'url_base': '/produtos',
-    }
+    }        
 
+    def get_queryset(self):
+        texto = self.request.GET.get('texto')
+
+        if texto:
+            produtos = Produto.objects.filter(codigo_barras__icontains=texto)
+        else:
+            produtos = Produto.objects.all()
+
+        return produtos
 
 class ProdutoUpdate(UpdateView):
     model = Produto
