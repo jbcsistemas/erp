@@ -1,7 +1,7 @@
 # JBC Sistemas ERP
 ERP para comércio varejista projetado incialmente para supermercados.
 ## Pendências básicas
-- [ ] Painel principal
+- [x] Painel principal
 - [ ] **Financeiro**
 	- [ ] Compras
 	- [ ] Vendas
