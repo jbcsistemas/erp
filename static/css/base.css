@@ -39,3 +39,25 @@ body {
 .busca {
     border: 1px solid white;
 }
+
+.icone-painel {
+    background-color: #3C0435;
+    width: 130px;
+    height: 130px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.icone-app {
+    width: 70%;
+    height: 70%;
+    fill: white;
+}
+
+a.link-app:hover {
+    background-color: #EAB121;
+}
+
+a.link-app:link, a.link-app:visited {
+    color: white;
+}
